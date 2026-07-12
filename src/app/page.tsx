@@ -117,7 +117,10 @@ export default function Home() {
       const hdr = res.headers.get("x-sources");
       if (hdr) {
         try {
-          sources = JSON.parse(atob(hdr));
+          // atob yields a Latin-1 byte string; decode those bytes as UTF-8
+          // so Turkish characters in source titles aren't mojibaked.
+          const bytes = Uint8Array.from(atob(hdr), (c) => c.charCodeAt(0));
+          sources = JSON.parse(new TextDecoder("utf-8").decode(bytes));
         } catch {
           /* ignore */
         }

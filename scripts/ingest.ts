@@ -17,7 +17,7 @@ import { getAdminClient } from "../src/lib/supabase";
 const IN_FILE = path.join(process.cwd(), "data", "pages.jsonl");
 const KNOWLEDGE_DIR = path.join(process.cwd(), "knowledge");
 const EMBED_BATCH = 64;
-const DB_BATCH = 100;
+const DB_BATCH = 40;
 
 type Page = { url: string; title: string; category: string; text: string };
 type Row = {
