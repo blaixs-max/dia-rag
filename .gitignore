@@ -1,0 +1,17 @@
+node_modules
+.next
+out
+.env
+.env.local
+.env*.local
+data/*.jsonl
+reference/*.xlsx
+reference/*.xls
+reference/*.csv
+*.log
+.DS_Store
+.vercel
+next-env.d.ts
+
+.vercel
+.env*
