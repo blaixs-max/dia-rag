@@ -13,6 +13,7 @@ import * as path from "node:path";
 import { chunkText } from "../src/lib/chunk";
 import { embedDocuments } from "../src/lib/embeddings";
 import { getAdminClient } from "../src/lib/supabase";
+import { withHeader } from "../src/lib/header";
 
 const IN_FILE = path.join(process.cwd(), "data", "pages.jsonl");
 const KNOWLEDGE_DIR = path.join(process.cwd(), "knowledge");
@@ -109,7 +110,10 @@ async function main() {
   const items: { page: Page; chunkIndex: number; content: string }[] = [];
   for (const page of pages) {
     for (const c of chunkText(`${page.title}\n\n${page.text}`)) {
-      items.push({ page, chunkIndex: c.index, content: c.content });
+      // Paraphrase-free contextual header (body unchanged) — keeps every chunk's
+      // source context and matches the migrated corpus.
+      const content = withHeader(page.category, page.title, c.content);
+      items.push({ page, chunkIndex: c.index, content });
     }
   }
   console.log(`→ ${pages.length} pages -> ${items.length} chunks`);
