@@ -18,3 +18,9 @@ next-env.d.ts
 
 # raw upload folder — never commit (customer data + internal docs)
 reference/
+
+# build cache
+tsconfig.tsbuildinfo
+
+# eval scratch — regenerable from scripts (build-pilot / gen-video / ab-eval)
+data/pilot/
