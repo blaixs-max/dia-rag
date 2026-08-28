@@ -8,8 +8,8 @@ import { getAdminClient } from "@/lib/supabase";
 export const runtime = "nodejs";
 export const maxDuration = 60;
 
-const MATCH_COUNT = 40;
-const RERANK_TOP = 8;
+const MATCH_COUNT = 100;
+const RERANK_TOP = 14;
 
 type MatchRow = {
   id: number;

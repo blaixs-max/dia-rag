@@ -39,7 +39,7 @@ export async function generateText(
 async function* anthropicStream(
   system: string,
   messages: ChatMessage[],
-  maxTokens = 1500
+  maxTokens = 4096
 ) {
   const { default: Anthropic } = await import("@anthropic-ai/sdk");
   const key = process.env.ANTHROPIC_API_KEY;
@@ -87,7 +87,7 @@ async function* anthropicStream(
 async function* geminiStream(
   system: string,
   messages: ChatMessage[],
-  maxTokens = 1500
+  maxTokens = 4096
 ) {
   const key = process.env.GEMINI_API_KEY;
   if (!key) throw new Error("GEMINI_API_KEY is not set");
